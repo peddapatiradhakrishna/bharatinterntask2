@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Temperature Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+      background-image: url('t1.png');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 100% 100%;
+    }
+    h1 {
+      color: #333;
+    }
+    input {
+      margin: 10px;
+      padding: 5px;
+      width: 200px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #3b5998;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    select {
+      margin: 10px;
+      padding: 5px;
+    }
+    .d{
+      margin: auto;
+      width:450px;
+      height:350px;
+      margin-top: 140px;
+      padding-top: 10px;
+      margin-left: 100px;
+      padding-bottom: 10px;
+      box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+      border-radius: 10px;
+      color:black;
+    }
+  </style>
+</head>
+<body>
+  <div class="d">
+  <h1>Temperature Converter</h1>
+  <input type="number" id="inputTemperature" placeholder="Enter temperature">
+  <br>
+  <select id="conversionType">
+    <option value="">Select One</option>
+    <option value="celsiusToFahrenheit">Celsius to Fahrenheit</option>
+    <option value="celsiusToKelvin">Celsius to Kelvin</option>
+    <option value="fahrenheitToCelsius">Fahrenheit to Celsius</option>
+    <option value="fahrenheitToKelvin">Fahrenheit to Kelvin</option>
+    <option value="kelvinToCelsius">Kelvin to Celsius</option>
+    <option value="kelvinToFahrenheit">Kelvin to Fahrenheit</option>
+  </select>
+  <br>
+  <button onclick="convertTemperature()">Convert</button>
+  <br>
+  <br>
+  <b>The converted temperature is:</b>
+  <br>
+  <input type="text" id="outputTemperature" placeholder="Converted temperature" readonly>
+  </div>
+  <script>
+    function convertTemperature() {
+      var conversionType = document.getElementById("conversionType").value;
+      var inputTemperature = document.getElementById("inputTemperature").value;
+      var outputTemperature = document.getElementById("outputTemperature");
+      
+      var convertedTemperature;
+      
+      if (conversionType === "celsiusToFahrenheit") {
+        convertedTemperature = (inputTemperature * 9/5) + 32;
+      } else if (conversionType === "fahrenheitToCelsius") {
+        convertedTemperature = (inputTemperature - 32) * 5/9;
+      } else if (conversionType === "celsiusToKelvin") {
+        convertedTemperature = parseFloat(inputTemperature) + 273.15;
+      } else if (conversionType === "kelvinToCelsius") {
+        convertedTemperature = parseFloat(inputTemperature) - 273.15;
+      } else if (conversionType === "fahrenheitToKelvin") {
+        convertedTemperature = (parseFloat(inputTemperature) + 459.67) * 5/9;
+      } else if (conversionType === "kelvinToFahrenheit") {
+        convertedTemperature = (parseFloat(inputTemperature) * 9/5) - 459.67;
+      }
+      
+      outputTemperature.value = convertedTemperature.toFixed(4);
+    }
+  </script>
+</body>
+</html>
